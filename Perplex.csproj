@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="App_Plugins\2FA\2fa.html" />
+      <Content Include="App_Plugins\Bergmania.OpenStreetMap\bergmania.openstreetmap.html" />
+      <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\images\layers-2x.png" />
+      <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\images\layers.png" />
+      <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\images\marker-icon-2x.png" />
+      <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\images\marker-icon.png" />
+      <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\images\marker-shadow.png" />
+      <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\leaflet.css" />
+      <Content Include="App_Plugins\SimpleRedirects\app.html" />
+      <Content Include="App_Plugins\SimpleRedirects\assets\lang\en.xml" />
+      <Content Include="App_Plugins\SimpleRedirects\assets\styles\styles.min.css" />
+      <Content Include="App_Plugins\SimpleRedirects\assets\styles\vendors.min.css" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="App_Plugins\2FA\2fa.controller.js" />
+      <None Include="App_Plugins\2FA\package.manifest" />
+      <None Include="App_Plugins\Bergmania.OpenStreetMap\bergmania.openstreetmap.controller.js" />
+      <None Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\leaflet-src.esm.js" />
+      <None Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\leaflet-src.esm.js.map" />
+      <None Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\leaflet-src.js" />
+      <None Include="App_Plugins\Bergmania.OpenStreetMap\package.manifest" />
+      <None Include="App_Plugins\SimpleRedirects\assets\scripts\app.js" />
+      <None Include="App_Plugins\SimpleRedirects\assets\scripts\vendors.min.js" />
+      <None Include="App_Plugins\SimpleRedirects\package.manifest" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GoogleAuthenticator" Version="2.3.0" />
+        <PackageReference Include="SimpleRedirects" Version="2.0.1" />
+        <PackageReference Include="Umbraco.Cms" Version="9.1.2" />
+        <PackageReference Include="Umbraco.TheStarterKit" Version="9.0.0" />
+    </ItemGroup>
+
+    <!-- Force windows to use ICU. Otherwise Windows 10 2019H1+ will do it, but older windows 10 and most if not all winodws servers will run NLS -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="68.2.0.9" />
+        <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2" />
+    </ItemGroup>
+
+
+
+    <PropertyGroup>
+        <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+    </PropertyGroup>
+
+    <!-- Set this to true if ModelsBuilder mode is not InMemoryAuto-->
+    <PropertyGroup>
+        <RazorCompileOnBuild>false</RazorCompileOnBuild>
+        <RazorCompileOnPublish>false</RazorCompileOnPublish>
+    </PropertyGroup>
+
+</Project>

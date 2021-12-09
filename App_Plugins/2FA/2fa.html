@@ -1,0 +1,25 @@
+﻿<div ng-controller="twoFactorAuth.controller">
+    <div id="twoFactorlogin" class="umb-modalcolumn umb-dialog" ng-cloak>
+        <div class="umb-login-container">
+            <div class="form">
+                <h1>Two Factor Authentication</h1>
+                <div ng-if="step=='loading'">
+                    <h1>Loading</h1>
+                </div>
+                <div ng-if="step=='code'">
+                    <p>Please enter your two factor authentication code.</p>
+                    <p>Please open your authenticator app on your mobile device</p>
+                    <form method="POST" name="twoFactorCodeForm" ng-submit="validate(provider, code)" ng-if="step=='code'">
+                        <div class="control-group">
+                            <input type="text" name="code" class="input-xlarge" ng-class="{error: didFail}" placeholder="2fa code" ng-model="code" />
+                            <div ng-if="didFail" class="text-error">{{errorMsg}}</div>
+                        </div>
+                        <button type="submit" class="btn">Validate</button>
+                    </form>
+                    
+                    <button ng-click="skip()">Skip step</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
