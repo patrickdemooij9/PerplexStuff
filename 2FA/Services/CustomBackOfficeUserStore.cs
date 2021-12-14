@@ -12,14 +12,17 @@ namespace Perplex._2FA.Services
 {
     public class CustomBackOfficeUserStore : BackOfficeUserStore
     {
-        public CustomBackOfficeUserStore(IScopeProvider scopeProvider, IUserService userService, IEntityService entityService, IExternalLoginService externalLoginService, IOptions<GlobalSettings> globalSettings, IUmbracoMapper mapper, BackOfficeErrorDescriber describer, AppCaches appCaches) : base(scopeProvider, userService, entityService, externalLoginService, globalSettings, mapper, describer, appCaches)
+        private readonly TwoFactorService _twoFactorService;
+
+        public CustomBackOfficeUserStore(IScopeProvider scopeProvider, IUserService userService, IEntityService entityService, IExternalLoginService externalLoginService, IOptions<GlobalSettings> globalSettings, IUmbracoMapper mapper, BackOfficeErrorDescriber describer, AppCaches appCaches, TwoFactorService twoFactorService) : base(scopeProvider, userService, entityService, externalLoginService, globalSettings, mapper, describer, appCaches)
         {
+            _twoFactorService = twoFactorService;
         }
 
-        public override Task<bool> GetTwoFactorEnabledAsync(BackOfficeIdentityUser user,
+        public override async Task<bool> GetTwoFactorEnabledAsync(BackOfficeIdentityUser user,
             CancellationToken cancellationToken = new CancellationToken())
         {
-            return Task.FromResult(true);
+            return await _twoFactorService.GetTwoFactorEnabledAsync(user);
         }
     }
 }

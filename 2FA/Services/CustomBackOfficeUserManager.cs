@@ -23,16 +23,6 @@ namespace Perplex._2FA.Services
 
         public override bool SupportsUserTwoFactor => true;
 
-        public override Task<bool> GetTwoFactorEnabledAsync(BackOfficeIdentityUser user)
-        {
-            return Task.FromResult(true);
-        }
-
-        public override Task<IdentityResult> SetTwoFactorEnabledAsync(BackOfficeIdentityUser user, bool enabled)
-        {
-            return Task.FromResult(IdentityResult.Success);
-        }
-
         public string GetTwoFactorView(string username)
         {
             return "/App_Plugins/2FA/2fa.html";

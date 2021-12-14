@@ -34,7 +34,6 @@
 
     <ItemGroup>
         <PackageReference Include="GoogleAuthenticator" Version="2.3.0" />
-        <PackageReference Include="SimpleRedirects" Version="2.0.1" />
         <PackageReference Include="Umbraco.Cms" Version="9.1.2" />
         <PackageReference Include="Umbraco.TheStarterKit" Version="9.0.0" />
     </ItemGroup>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Perplex._2FA.Components;
 using Perplex._2FA.Services;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Composing;
@@ -20,6 +21,8 @@ namespace Perplex._2FA.Composers
         public void Compose(IUmbracoBuilder builder)
         {
             builder.SetBackOfficeUserManager<CustomBackOfficeUserManager>();
+
+            builder.Components().Append<DatabaseComponent>();
 
             builder.Services.AddScoped<IBackOfficeTwoFactorOptions, CustomBackOfficeUserManager>();
             builder.Services.AddAuthentication()
