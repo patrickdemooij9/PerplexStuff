@@ -38,8 +38,6 @@ namespace Perplex._2FA.Controllers
             var user = _backOfficeSecurityAccessor.BackOfficeSecurity.CurrentUser;
             var accountSecretKey = Guid.NewGuid().ToString();
 
-            var setupInfo = tfa.GenerateSetupCode("TestApplication", user.Email, accountSecretKey, false, 30);
-
             var currentTwoFactor = await _twoFactorService.GetTwoFactor(user.Id, "Stuff");
             if (currentTwoFactor is null)
                 currentTwoFactor = new TwoFactorEntity
@@ -48,6 +46,11 @@ namespace Perplex._2FA.Controllers
                     UserId = user.Id,
                     IsConfirmed = false
                 };
+            else if (currentTwoFactor.IsConfirmed)
+                return new TwoFactorAuthInfo();
+
+            var setupInfo = tfa.GenerateSetupCode("TestApplication", user.Email, accountSecretKey, false, 30);
+
             currentTwoFactor.Value = accountSecretKey;
             await _twoFactorService.SetTwoFactorAsync(currentTwoFactor);
 
