@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <Content Include="App_Plugins\2FA\2fa.html" />
+      <Content Include="App_Plugins\2FA\managementdashboard.html" />
       <Content Include="App_Plugins\Bergmania.OpenStreetMap\bergmania.openstreetmap.html" />
       <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\images\layers-2x.png" />
       <Content Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\images\layers.png" />
@@ -21,6 +22,8 @@
 
     <ItemGroup>
       <None Include="App_Plugins\2FA\2fa.controller.js" />
+      <None Include="App_Plugins\2FA\managementdashboard.controller.js" />
+      <None Include="App_Plugins\2FA\managementdashboard.service.js" />
       <None Include="App_Plugins\2FA\package.manifest" />
       <None Include="App_Plugins\Bergmania.OpenStreetMap\bergmania.openstreetmap.controller.js" />
       <None Include="App_Plugins\Bergmania.OpenStreetMap\lib\leaflet\leaflet-src.esm.js" />

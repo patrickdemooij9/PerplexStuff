@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Perplex._2FA.Components;
+using Perplex._2FA.Dashboard;
 using Perplex._2FA.Services;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Composing;
@@ -24,11 +25,15 @@ namespace Perplex._2FA.Composers
 
             builder.Components().Append<DatabaseComponent>();
 
+            builder.Dashboards().Add<ManagementDashboard>();
+
             builder.Services.AddScoped<IBackOfficeTwoFactorOptions, CustomBackOfficeUserManager>();
+            builder.Services.AddScoped<TwoFactorService>();
             builder.Services.AddAuthentication()
                 .AddCookie(Constants.Security.BackOfficeTwoFactorRememberMeAuthenticationType);
 
             var identityBuilder = new BackOfficeIdentityBuilder(builder.Services);
+            identityBuilder.AddUserStore<CustomBackOfficeUserStore>();
             identityBuilder.AddTokenProvider("Stuff", typeof(TestTwoFactorProvider));
         }
     }

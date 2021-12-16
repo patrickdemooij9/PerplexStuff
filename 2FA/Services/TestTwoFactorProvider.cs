@@ -10,18 +10,27 @@ namespace Perplex._2FA.Services
 {
     public class TestTwoFactorProvider : IUserTwoFactorTokenProvider<BackOfficeIdentityUser>
     {
+        private readonly TwoFactorService _twoFactorService;
+
+        public TestTwoFactorProvider(TwoFactorService twoFactorService)
+        {
+            _twoFactorService = twoFactorService;
+        }
+
         public Task<string> GenerateAsync(string purpose, UserManager<BackOfficeIdentityUser> manager, BackOfficeIdentityUser user)
         {
             return Task.FromResult("test");
         }
 
-        public Task<bool> ValidateAsync(string purpose, string token, UserManager<BackOfficeIdentityUser> manager, BackOfficeIdentityUser user)
+        public async Task<bool> ValidateAsync(string purpose, string token, UserManager<BackOfficeIdentityUser> manager, BackOfficeIdentityUser user)
         {
-            return Task.FromResult(true);
+            var auth = await _twoFactorService.GetTwoFactor(int.Parse(user.Id), "Stuff");
+            if (auth is null)
+                return false;
 
             TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
-            var result = tfa.ValidateTwoFactorPIN("", token);
-            return Task.FromResult(result);
+            var result = tfa.ValidateTwoFactorPIN(auth.Value, token);
+            return result;
         }
 
         public Task<bool> CanGenerateTwoFactorTokenAsync(UserManager<BackOfficeIdentityUser> manager, BackOfficeIdentityUser user)

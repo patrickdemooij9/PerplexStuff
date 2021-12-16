@@ -1,3 +1,7 @@
 ﻿{
-  "javascript": ["/App_Plugins/2FA/2fa.controller.js"]
+  "javascript": [
+    "/App_Plugins/2FA/2fa.controller.js",
+    "/App_Plugins/2FA/managementdashboard.controller.js",
+    "/App_Plugins/2FA/managementdashboard.service.js"
+  ]
 }

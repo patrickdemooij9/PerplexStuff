@@ -22,7 +22,7 @@ namespace Perplex._2FA.Services
         public override async Task<bool> GetTwoFactorEnabledAsync(BackOfficeIdentityUser user,
             CancellationToken cancellationToken = new CancellationToken())
         {
-            return await _twoFactorService.GetTwoFactorEnabledAsync(user);
+            return await _twoFactorService.GetTwoFactorEnabledAsync(int.Parse(user.Id));
         }
     }
 }

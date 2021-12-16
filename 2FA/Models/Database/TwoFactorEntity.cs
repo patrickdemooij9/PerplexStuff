@@ -19,5 +19,8 @@ namespace Perplex._2FA.Models.Database
 
         [Column("Value")]
         public string Value { get; set; }
+
+        [Column("IsConfirmed")]
+        public bool IsConfirmed { get; set; }
     }
 }
