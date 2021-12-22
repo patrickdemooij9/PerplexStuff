@@ -15,6 +15,7 @@ namespace Perplex._2FA.Services
         public TestTwoFactorProvider(TwoFactorService twoFactorService)
         {
             _twoFactorService = twoFactorService;
+
         }
 
         public Task<string> GenerateAsync(string purpose, UserManager<BackOfficeIdentityUser> manager, BackOfficeIdentityUser user)
